@@ -10,6 +10,7 @@ def testSplash():
       return treat.as_string(response.body)
     end
     '''
+    #此url是配置了负载均衡的nginx进程，能讲请求轮训到各台服务器的splash进程
     url = 'http://:80/execute?lua_source=' + quote(lua)
     response = requests.get(url)
     ip = re.search('(\d+\.\d+\.\d+\.\d+)', response.text).group(1)
