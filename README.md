@@ -4,7 +4,7 @@
 工具：
   Mac,3台阿里云服务器+1台华为云服务器
 
-软件：
+软件：\n
   scrapy爬虫框架，docker的splash引擎，缓存redis，数据库mongodb，抓包charles，selenium+firefox/chrome获取cookies及模拟刷新等操作
 
 实现方式：
