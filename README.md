@@ -1,8 +1,14 @@
 # Weibo
 实现微博PC版爬虫
+
 工具：Mac,3台阿里云服务器+1台华为云服务器
+
 软件：scrapy爬虫框架，docker的splash引擎，缓存redis，数据库mongodb，抓包charles，selenium+firefox/chrome获取cookies及模拟刷新等操作
+
 实现方式：scrapy本身不支持分布式爬虫，但是可以结合redis来实现，scrapy_redis重写了scrapy的Scheduler类以及dupefilter去重类;页面js加载由splash实现；
+
 我把获取cookies代码写了两个类ResetCookiesForSpider，一个是chrome的driver，一个时firefox的driver；使用自动化测试工具selenium来打开页面，手动登录微博(最好是有多个微博账号，这样可以经常切换cookies，避免被ban)；
+
 服务器的配置：起redis的服务端，以及mongodb的服务端；配置文件可自行百度；同时设置了开机自启；安装docker，pull splash，设置restart=always,同时设置开机自启；
+
 内存问题：splash比较吃内存，我的云服务器内存较小，我采取的策略是起个crontab任务，定时跑脚本获取当前内存使用情况，如果达到警告值则自动重启docker，并输出内存使用值及重启时间点到日志中;重启docker内释放splash吃的内存，在非宕机下大概需要2-3秒，我设置了retry-times=5此间的request会重试，避免了因docker重启导致的request丢失问题；
