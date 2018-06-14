@@ -48,7 +48,7 @@ class FansSpider(RedisSpider):
 
     def __init__(self, *args, **kwargs):
         #在初始化中建立mongodb的链接，从数据库获取cookies
-        self.client = MongoClient("mongodb://47.100.161.81:27017") 
+        self.client = MongoClient("mongodb://:27017") 
         db = self.client['cookies']
         self.cookie_col = db.weibo
         self._reset_cookies()
