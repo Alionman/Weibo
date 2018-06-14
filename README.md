@@ -12,3 +12,5 @@
 服务器的配置：起redis的服务端，以及mongodb的服务端；配置文件可自行百度；同时设置了开机自启；安装docker，pull splash，设置restart=always,同时设置开机自启；
 
 内存问题：splash比较吃内存，我的云服务器内存较小，我采取的策略是起个crontab任务，定时跑脚本获取当前内存使用情况，如果达到警告值则自动重启docker，并输出内存使用值及重启时间点到日志中;重启docker内释放splash吃的内存，在非宕机下大概需要2-3秒，我设置了retry-times=5此间的request会重试，避免了因docker重启导致的request丢失问题；
+
+服务器测试： 写了个脚步（test_splash_server.py）测试当前部署的splash服务器是否可达
